@@ -1,76 +1,98 @@
-import { Redirect, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  setupIonicReact
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButton,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  setupIonicReact,
+  IonPage
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-
-/* Core CSS required for Ionic components to work properly */
+import './App.css';
 import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
-/* Theme variables */
-import './theme/variables.css';
+import './App.css'; // Importe o arquivo CSS personalizado
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const [apiData, setApiData] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+      const data = await response.json();
+      setApiData(data);
+    } catch (error) {
+      console.error('Erro ao buscar dados da API', error);
+    }
+  };
+
+  return (
+    <IonApp>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Missão 2</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <div id="content">
+          <center>
+            <h1>Bem-vindo ao Meu Site!</h1>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+                dolore iure alias voluptatem qui sequi, amet veniam possimus eius
+                doloremque illum facere deleniti, voluptatibus ex! Fugit sed debitis
+                corporis quod.
+              </p>
+            </div>
+            <div>
+              <IonButton id="myButton" onClick={fetchData}>Clique aqui</IonButton>
+            </div>
+
+            {apiData && (
+              <div>
+                <h2>Resposta da API:</h2>
+                <p>{JSON.stringify(apiData)}</p>
+              </div>
+            )}
+
+            <hr />
+
+            <h2>Seção Importante!</h2>
+            <div>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
+                quos quaerat mollitia, nihil repellat nisi cupiditate molestias
+                officiis deleniti itaque in tenetur eum corrupti quia odio optio
+                incidunt aliquid praesentium!.
+              </p>
+            </div>
+            <IonCard>
+              <IonCardHeader>
+                <IonCardTitle>Imagem de exemplo</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                <img
+                  src="https://www.unijui.edu.br/images/stories/manual_identidade/marcas/download.php?arquivo=marca.png"
+                  alt="Imagem de exemplo"
+                />
+              </IonCardContent>
+            </IonCard>
+          </center>
+        </div>
+      </IonContent>
+    </IonApp>
+  );
+};
 
 export default App;

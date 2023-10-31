@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: grey;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: black;
+}
+
+p {
+  font-size: 16px;
+  color: white;
+}
+
+button {
+  all: unset;
+  background-color: black;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+button:hover {
+  background-color: white;
+  color: #000;
+}
+
+#content {
+  background-color: #ff87ad;
+  border: dashed 2px #1c1a1d;
+}
