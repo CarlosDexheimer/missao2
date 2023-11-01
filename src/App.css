@@ -11,7 +11,7 @@ h1 {
 
 p {
   font-size: 16px;
-  color: white;
+  color: #1254a7;
 }
 
 button {
@@ -25,11 +25,25 @@ button {
 }
 
 button:hover {
-  background-color: white;
+  
   color: #000;
 }
 
 #content {
-  background-color: #ff87ad;
+  background-image: url("wp7897895.png");
   border: dashed 2px #1c1a1d;
+  background-size: cover;
+}
+
+#ij {
+  opacity: 50%;
+}
+
+#card {
+  background-image:none;
+}
+
+#cardX {
+  background-color: transparent;
+
 }

@@ -28,7 +28,7 @@ const App: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+      const response = await fetch("https://taylor-swift-api.sarbo.workers.dev/albums");
       const data = await response.json();
       setApiData(data);
     } catch (error) {
@@ -77,13 +77,13 @@ const App: React.FC = () => {
                 incidunt aliquid praesentium!.
               </p>
             </div>
-            <IonCard>
+            <IonCard id="cardX">
               <IonCardHeader>
                 <IonCardTitle>Imagem de exemplo</IonCardTitle>
               </IonCardHeader>
-              <IonCardContent>
+              <IonCardContent id="card">
                 <img
-                  src="https://www.unijui.edu.br/images/stories/manual_identidade/marcas/download.php?arquivo=marca.png"
+                  id="ij" src="https://www.unijui.edu.br/images/stories/manual_identidade/marcas/download.php?arquivo=marca.png"
                   alt="Imagem de exemplo"
                 />
               </IonCardContent>
